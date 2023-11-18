@@ -1,8 +1,8 @@
-import { CgMenuLeft } from "react-icons/cg";
+import { IoRestaurantSharp } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const navLinks = (
+  const navOptions = (
     <>
       <li>
         <NavLink
@@ -68,18 +68,18 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-black px-6 lg:px-20 py-6 lg:py-10">
+    <nav className="bg-black bg-opacity-50 absolute z-10 w-full px-6 lg:px-20 py-6 lg:py-10">
       <div className="flex justify-between items-center">
         <div className="dropdown lg:hidden">
           <label tabIndex={0} className="text-3xl font-extrabold text-white">
-            <CgMenuLeft></CgMenuLeft>
+          <IoRestaurantSharp />
           </label>
           <ul
             tabIndex={0}
             className="dropdown-content mt-3 z-[1] p-4 drop-shadow-2xl rounded-box w-40
               md:w-52 font-medium text-black bg-[#1F2937] border border-gray-500"
           >
-            {navLinks}
+            {navOptions}
           </ul>
         </div>
         <NavLink to="/">
@@ -95,9 +95,7 @@ const Navbar = () => {
           </div>
         </NavLink>
         <div className="navbar-center hidden lg:flex">
-          <ul className="flex gap-12 font-bold text-xl text-black">
-            {navLinks}
-          </ul>
+          <ul className="flex gap-12 font-bold text-xl">{navOptions}</ul>
         </div>
       </div>
     </nav>
