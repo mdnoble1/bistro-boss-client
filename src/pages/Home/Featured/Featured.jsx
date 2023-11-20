@@ -1,5 +1,5 @@
-import image from "../../assets/home/featured.jpg";
-import SectionTitle from "../../components/sectionTitle/SectionTitle";
+import image from "../../../assets/home/featured.jpg";
+import SectionTitle from "../../../components/sectionTitle/SectionTitle";
 import "./Featured.css";
 
 const Featured = () => {
