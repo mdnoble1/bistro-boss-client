@@ -1,15 +1,21 @@
 import image from "../../assets/home/featured.jpg";
 import SectionTitle from "../../components/sectionTitle/SectionTitle";
-import "./Featured.css"
+import "./Featured.css";
 
 const Featured = () => {
   return (
     <section className="featured-item pt-16 lg:pt-32 pb-20 lg:pb-40 my-20">
-        <SectionTitle heading={"Featured Item"}
-        subHeading={"Check It Out"}></SectionTitle>
+      <SectionTitle
+        heading={"Featured Item"}
+        subHeading={"Check It Out"}
+      ></SectionTitle>
       <div className="container mx-auto lg:flex justify-center items-center">
         <div>
-          <img className="w-10/12 lg:w-2/3 rounded-md mx-auto my-8" src={image} alt="" />
+          <img
+            className="w-10/12 lg:w-2/3 rounded-md mx-auto my-8"
+            src={image}
+            alt=""
+          />
         </div>
         <div className="text-white text-center lg:text-left w-11/12 mx-auto">
           <h2 className="text-xl">March 20, 2023</h2>
@@ -20,7 +26,9 @@ const Featured = () => {
             Eaque repellat recusandae ad laudantium tempore consequatur
             consequuntur omnis ullam maxime tenetur.
           </p>
-          <button className="btn btn-outline text-white uppercase">Read More</button>
+          <button className="btn btn-outline text-white uppercase">
+            Read More
+          </button>
         </div>
       </div>
     </section>
