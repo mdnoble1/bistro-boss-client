@@ -1,9 +1,14 @@
+import { Helmet } from "react-helmet-async";
+
 const Menu = () => {
-    return (
-        <div>
-            <h2>Eta hoilo menu</h2>
-        </div>
-    );
+  return (
+    <div>
+      <Helmet>
+        <title>Bistro Boss | Menu</title>
+      </Helmet>
+      <h2>Eta hoilo menu</h2>
+    </div>
+  );
 };
 
 export default Menu;
