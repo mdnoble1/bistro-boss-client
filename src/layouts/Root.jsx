@@ -10,13 +10,14 @@ const Root = () => {
     // console.log(location)
 
     const isLogin = location.pathname.includes('login')
+    const isRegister= location.pathname.includes('register')
 
 
     return (
         <div>
-            { isLogin || <Navbar></Navbar>}
+            { ( isLogin || isRegister ) || <Navbar></Navbar>}
             <Outlet></Outlet>
-            { isLogin || <Footer></Footer>}
+            { ( isLogin || isRegister ) || <Footer></Footer>}
         </div>
     );
 };

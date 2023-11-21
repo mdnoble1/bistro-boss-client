@@ -70,7 +70,7 @@ const Login = () => {
       <div className="hero min-h-screen py-16">
         <div className="hero-content flex-col md:flex-row items-center justify-between gap-12 lg:gap-32">
           <div className="text-center md:w-1/2">
-            <img src={image} alt="" />
+            <Link to="/"><img src={image} alt="" /></Link>
           </div>
           <div className="md:w-1/2">
             <h2 className="font-bold text-4xl text-black text-center mb-12">Login</h2>
