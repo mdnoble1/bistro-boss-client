@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import MenuBanner from "./MenuBanner/MenuBanner";
-import Desserts from "./MenuBanner/Desserts/Desserts";
+import Desserts from "./Desserts/Desserts";
 
 const Menu = () => {
   return (
