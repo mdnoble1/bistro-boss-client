@@ -3,6 +3,7 @@ import MenuBanner from "./MenuBanner/MenuBanner";
 import Desserts from "./Desserts/Desserts";
 import TodayOffer from "./TodayOffer/TodayOffer";
 import useMenu from "../../hooks/useMenu";
+import Pizza from "./Pizza/Pizza";
 
 const Menu = () => {
   const [menu] = useMenu();
@@ -22,6 +23,7 @@ const Menu = () => {
       <MenuBanner></MenuBanner>
       <TodayOffer items={offered} ></TodayOffer>
       <Desserts items={desserts}></Desserts>
+      <Pizza items={pizza}></Pizza>
     </div>
   );
 };
