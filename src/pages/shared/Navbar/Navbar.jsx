@@ -56,12 +56,12 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/signOut"
+          to="/login"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-[#faa504] " : "text-white"
           }
         >
-          SIGN OUT
+          LOGIN
         </NavLink>
       </li>
     </>
