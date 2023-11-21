@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import FoodCard from "../../../components/FoodCard/FoodCard";
+import OrderCard from "../OrderCard/OrderCard";
 
 const Order = ({ menu }) => {
   const [tabIndex, setTabIndex] = useState(0);
 
   // console.log(menu)
 
-  
   const desserts = menu.filter((item) => item.category === "dessert");
   const pizza = menu.filter((item) => item.category === "pizza");
   const salads = menu.filter((item) => item.category === "salad");
@@ -29,18 +28,20 @@ const Order = ({ menu }) => {
         <Tab>Drinks</Tab>
       </TabList>
       <TabPanel>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mt-16">
-          {
-            desserts.map ( item => <FoodCard 
-            key={item._id} 
-            item={item}></FoodCard>)
-          }
-        </div>
+        <OrderCard items={salads}></OrderCard>
       </TabPanel>
-      <TabPanel></TabPanel>
-      <TabPanel></TabPanel>
-      <TabPanel></TabPanel>
-      <TabPanel></TabPanel>
+      <TabPanel>
+        <OrderCard items={pizza}></OrderCard>
+      </TabPanel>
+      <TabPanel>
+        <OrderCard items={soups}></OrderCard>
+      </TabPanel>
+      <TabPanel>
+        <OrderCard items={desserts}></OrderCard>
+      </TabPanel>
+      <TabPanel>
+        <OrderCard items={drinks}></OrderCard>
+      </TabPanel>
     </Tabs>
   );
 };
