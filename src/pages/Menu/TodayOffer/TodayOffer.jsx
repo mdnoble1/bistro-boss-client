@@ -1,4 +1,5 @@
 import SectionTitle from "../../../components/sectionTitle/SectionTitle";
+import MenuButton from "../../shared/MenuButton/MenuButton";
 // import useMenu from "../../../hooks/useMenu";
 import MenuItem from "../../shared/MenuItem/MenuItem";
 
@@ -18,6 +19,10 @@ const TodayOffer = ( { items }  ) => {
         {items?.map((item) => (
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
+      </div>
+      <div className="mt-10 text-center">
+        <MenuButton
+        buttonTitle={"ORDER YOUR FAVOURITE FOOD"}></MenuButton>
       </div>
     </section>
   );

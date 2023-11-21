@@ -21,7 +21,7 @@ const Menu = () => {
       </Helmet>
       <MenuBanner></MenuBanner>
       <TodayOffer items={offered} ></TodayOffer>
-      <Desserts></Desserts>
+      <Desserts items={desserts}></Desserts>
     </div>
   );
 };
