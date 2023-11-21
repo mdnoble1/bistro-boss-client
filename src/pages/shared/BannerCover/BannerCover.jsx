@@ -9,7 +9,7 @@ const BannerCover = ( { image , title , description } ) => {
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
-        <div className="max-w-md mt-20">
+        <div className="max-w-2xl mt-20">
           <h1 className="mb-5 text-4xl lg:text-7xl font-bold uppercase cinzel">{title}</h1>
           <p className="mb-5 uppercase cinzel font-semibold lg:text-xl">
             {description}
