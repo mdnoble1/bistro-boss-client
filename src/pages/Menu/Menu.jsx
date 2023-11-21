@@ -4,6 +4,7 @@ import Desserts from "./Desserts/Desserts";
 import TodayOffer from "./TodayOffer/TodayOffer";
 import useMenu from "../../hooks/useMenu";
 import Pizza from "./Pizza/Pizza";
+import Salad from "./Salad/Salad";
 
 const Menu = () => {
   const [menu] = useMenu();
@@ -24,6 +25,7 @@ const Menu = () => {
       <TodayOffer items={offered} ></TodayOffer>
       <Desserts items={desserts}></Desserts>
       <Pizza items={pizza}></Pizza>
+      <Salad items={salads}></Salad>
     </div>
   );
 };
