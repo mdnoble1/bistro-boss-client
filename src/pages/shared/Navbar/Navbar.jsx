@@ -46,7 +46,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/shop"
+          to="/shop/salads"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-[#faa504] " : "text-white"
           }

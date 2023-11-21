@@ -1,13 +1,12 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../../components/sectionTitle/SectionTitle";
 import MenuButton from "../../shared/MenuButton/MenuButton";
 // import useMenu from "../../../hooks/useMenu";
 import MenuItem from "../../shared/MenuItem/MenuItem";
 
-const TodayOffer = ( { items }  ) => {
-
-    // const [ menu ] = useMenu()
-    // const items = menu.filter ( item => item.category === 'offered')
-
+const TodayOffer = ({ items }) => {
+  // const [ menu ] = useMenu()
+  // const items = menu.filter ( item => item.category === 'offered')
 
   return (
     <section className="lg:mt-32 mb-20">
@@ -21,8 +20,9 @@ const TodayOffer = ( { items }  ) => {
         ))}
       </div>
       <div className="mt-10 text-center">
-        <MenuButton
-        buttonTitle={"ORDER YOUR FAVOURITE FOOD"}></MenuButton>
+        <Link to="/shop/salads">
+          <MenuButton buttonTitle={"ORDER YOUR FAVOURITE FOOD"}></MenuButton>
+        </Link>
       </div>
     </section>
   );

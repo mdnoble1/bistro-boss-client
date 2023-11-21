@@ -24,10 +24,10 @@ const Menu = () => {
       </Helmet>
       <MenuBanner></MenuBanner>
       <TodayOffer items={offered} ></TodayOffer>
-      <Desserts items={desserts}></Desserts>
-      <Pizza items={pizza}></Pizza>
-      <Salad items={salads}></Salad>
-      <Soup items={soups}></Soup>
+      <Desserts items={desserts} title={'desserts'}></Desserts>
+      <Pizza items={pizza} title={'pizza'}></Pizza>
+      <Salad items={salads} title={'salads'}></Salad>
+      <Soup items={soups} title={'soups'}></Soup>
     </div>
   );
 };

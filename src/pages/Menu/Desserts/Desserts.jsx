@@ -2,13 +2,14 @@ import Cover from "../../shared/Cover/Cover";
 import image from "../../../assets/menu/dessert-bg.jpeg";
 import MenuItem from "../../shared/MenuItem/MenuItem";
 import MenuButton from "../../shared/MenuButton/MenuButton";
+import { Link } from "react-router-dom";
 
-const Desserts = ( { items } ) => {
+const Desserts = ({ items, title }) => {
   return (
     <section className="lg:mt-32 mb-20">
       <Cover
         image={image}
-        title={"DESSERTS"}
+        title={title}
         description={
           "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         }
@@ -19,7 +20,9 @@ const Desserts = ( { items } ) => {
         ))}
       </div>
       <div className="mt-10 text-center">
-        <MenuButton buttonTitle={"ORDER YOUR FAVOURITE FOOD"}></MenuButton>
+        <Link to={`/shop/${title}`}>
+          <MenuButton buttonTitle={"ORDER YOUR FAVOURITE FOOD"}></MenuButton>
+        </Link>
       </div>
     </section>
   );

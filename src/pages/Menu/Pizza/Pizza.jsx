@@ -2,14 +2,14 @@ import Cover from "../../shared/Cover/Cover";
 import image from "../../../assets/menu/pizza-bg.jpg";
 import MenuButton from "../../shared/MenuButton/MenuButton";
 import MenuItem from "../../shared/MenuItem/MenuItem";
+import { Link } from "react-router-dom";
 
-
-const Pizza = ( { items } ) => {
-    return (
-        <section className="lg:mt-32 mb-20">
+const Pizza = ({ items, title }) => {
+  return (
+    <section className="lg:mt-32 mb-20">
       <Cover
         image={image}
-        title={"PIZZA"}
+        title={title}
         description={
           "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         }
@@ -20,10 +20,12 @@ const Pizza = ( { items } ) => {
         ))}
       </div>
       <div className="mt-10 text-center">
-        <MenuButton buttonTitle={"ORDER YOUR FAVOURITE FOOD"}></MenuButton>
+        <Link to={`/shop/${title}`}>
+          <MenuButton buttonTitle={"ORDER YOUR FAVOURITE FOOD"}></MenuButton>
+        </Link>
       </div>
     </section>
-    )
+  );
 };
 
 export default Pizza;

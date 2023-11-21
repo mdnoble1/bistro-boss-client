@@ -6,9 +6,6 @@ import useMenu from "../../hooks/useMenu";
 const OrderFood = () => {
   const [menu] = useMenu();
 
-  
-  
-
   return (
     <div>
       <Helmet>
