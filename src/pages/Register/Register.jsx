@@ -1,15 +1,59 @@
 /* eslint-disable no-unused-vars */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import image from "../../assets/others/authentication2.png";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 const Login = () => {
-  const {register, handleSubmit,  formState: { errors }, } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit = (data) => console.log(data)
+  const { createUser, updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
 
-  // console.log(watch("example"))
+
+  const onSubmit = (data) => {
+    //console.log(data);
+    createUser(data.email, data.password)
+       .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        updateUserProfile(data.name, data.photoURL)
+            .then(() => {
+               //console.log('user profile info updated')
+                // create user entry in the database
+                const userInfo = {
+                    name: data.name,
+                    email: data.email
+                }
+                // axiosPublic.post('/users', userInfo)
+                //     .then(res => {
+                //         if (res.data.insertedId) {
+                //             console.log('user added to the database')
+                //             reset();
+                //             Swal.fire({
+                //                 position: 'top-end',
+                //                 icon: 'success',
+                //                 title: 'User created successfully.',
+                //                 showConfirmButton: false,
+                //                 timer: 1500
+                //             });
+                //             navigate('/');
+                //         }
+                //     })
+
+
+            })
+            .catch(error => console.log(error))
+    })
+};
+
 
   return (
     <section>
@@ -37,13 +81,33 @@ const Login = () => {
                   </label>
                   <input
                     type="text"
-                    {...register("name" , { required: true }) } 
+                    {...register("name", { required: true })}
                     name="name"
                     placeholder="Type Your Name"
                     className="input rounded"
                   />
                 </div>
-                {errors.name && <span className="text-red-600">Name is required</span>}
+                {errors.name && (
+                  <span className="text-red-600">Name is required</span>
+                )}
+                {/* photoURL */}
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold text-xl text-[#444]">
+                      Photo URL
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    {...register("photoURL", { required: true })}
+                    placeholder="Your Photo URL"
+                    className="input rounded"
+                  />
+                  {errors.photoURL && (
+                    <span className="text-red-600">Photo is required</span>
+                  )}
+                </div>
+
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text font-semibold text-xl text-[#444]">
@@ -52,13 +116,15 @@ const Login = () => {
                   </label>
                   <input
                     type="email"
-                    {...register("email")}
+                    {...register("email", { required: true })}
                     name="email"
                     placeholder="Type Your Email"
                     className="input rounded"
-                    required
                   />
                 </div>
+                {errors.email && (
+                  <span className="text-red-600">Email is required</span>
+                )}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text font-semibold text-xl text-[#444]">
@@ -67,13 +133,35 @@ const Login = () => {
                   </label>
                   <input
                     type="password"
-                    {...register("password")}
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      maxLength: 20,
+                      pattern:
+                        /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                    })}
                     name="password"
                     placeholder="Type Your Password"
                     className="input rounded"
-                    required
                   />
                 </div>
+                {errors.password?.type === "required" && (
+                  <p className="text-red-600">Password is required</p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-600">Password must be 6 characters</p>
+                )}
+                {errors.password?.type === "maxLength" && (
+                  <p className="text-red-600">
+                    Password must be less than 20 characters
+                  </p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-600">
+                    Password must contain Uppercase, lower case, number and
+                    special characters.
+                  </p>
+                )}
 
                 <div className="form-control mt-6">
                   <input
