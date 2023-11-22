@@ -3,6 +3,7 @@ import { IoRestaurantSharp } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { CgProfile } from "react-icons/cg";
+import { FaCartPlus } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -69,6 +70,14 @@ const Navbar = () => {
           OUR SHOP
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/">
+          <button className="btn btn-ghost">
+            <FaCartPlus className="text-3xl lg:text-4xl text-white"></FaCartPlus>
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </NavLink>
+      </li>
     </>
   );
 
@@ -115,11 +124,11 @@ const Navbar = () => {
               ) : (
                 <>
                   <div className="my-8 text-left">
-                      <NavLink to="/login" className="text-[#ffa903]">
-                        <button className="btn btn-sm btn-outline text-[#ffa903] ml-2">
-                          Login
-                        </button>
-                      </NavLink>
+                    <NavLink to="/login" className="text-[#ffa903]">
+                      <button className="btn btn-sm btn-outline text-[#ffa903] ml-2">
+                        Login
+                      </button>
+                    </NavLink>
                   </div>
                 </>
               )}
@@ -139,7 +148,7 @@ const Navbar = () => {
           </div>
         </NavLink>
         <div className="navbar-center hidden lg:flex">
-          <ul className="flex gap-12 font-bold text-xl">{navOptions}</ul>
+          <ul className="flex gap-12 font-bold text-xl items-center">{navOptions}</ul>
         </div>
         <div className={`hidden lg:block`}>
           <div className="dropdown dropdown-end">
