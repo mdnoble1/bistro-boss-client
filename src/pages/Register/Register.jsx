@@ -1,8 +1,16 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import image from "../../assets/others/authentication2.png";
 import { Helmet } from "react-helmet";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {register, handleSubmit,  formState: { errors }, } = useForm();
+
+  const onSubmit = (data) => console.log(data)
+
+  // console.log(watch("example"))
+
   return (
     <section>
       <Helmet>
@@ -20,7 +28,22 @@ const Login = () => {
               Sign Up
             </h2>
             <div className="card rounded-sm shadow-2xl bg-slate-100 py-4">
-              <form onSubmit="" className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text font-semibold text-xl text-[#444]">
+                      Name
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    {...register("name" , { required: true }) } 
+                    name="name"
+                    placeholder="Type Your Name"
+                    className="input rounded"
+                  />
+                </div>
+                {errors.name && <span className="text-red-600">Name is required</span>}
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text font-semibold text-xl text-[#444]">
@@ -29,6 +52,7 @@ const Login = () => {
                   </label>
                   <input
                     type="email"
+                    {...register("email")}
                     name="email"
                     placeholder="Type Your Email"
                     className="input rounded"
@@ -43,6 +67,7 @@ const Login = () => {
                   </label>
                   <input
                     type="password"
+                    {...register("password")}
                     name="password"
                     placeholder="Type Your Password"
                     className="input rounded"
