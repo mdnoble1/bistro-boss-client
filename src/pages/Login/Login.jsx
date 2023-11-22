@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import image from "../../assets/others/authentication2.png";
 // import { useContext } from "react";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import { Helmet } from "react-helmet-async";
 // import { Link, useLocation, useNavigate } from "react-router-dom";
-// import {
-//   loadCaptchaEnginge,
-//   LoadCanvasTemplate,
-//   validateCaptcha,
-// } from "react-simple-captcha";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
 // import { AuthContext } from "../../providers/AuthProvider";
 // import Swal from "sweetalert2";
 // import SocialLogin from "../../components/SocialLogin/SocialLogin";
@@ -16,7 +16,7 @@ import image from "../../assets/others/authentication2.png";
 import { Helmet } from "react-helmet";
 
 const Login = () => {
-  //   const [disabled, setDisabled] = useState(true);
+    const [disabled, setDisabled] = useState(true);
   //   const { signIn } = useContext(AuthContext);
   //   const navigate = useNavigate();
   //   const location = useLocation();
@@ -24,43 +24,47 @@ const Login = () => {
   //   const from = location.state?.from?.pathname || "/";
   //   console.log("state in the location login page", location.state);
 
-  //   useEffect(() => {
-  //     loadCaptchaEnginge(6);
-  //   }, []);
+    useEffect(() => {
+      loadCaptchaEnginge(6);
+    }, []);
 
-  //   const handleLogin = (event) => {
-  //     event.preventDefault();
-  //     const form = event.target;
-  //     const email = form.email.value;
-  //     const password = form.password.value;
-  //     console.log(email, password);
+    const handleLogin = (event) => {
 
-  //     signIn(email, password).then((result) => {
-  //       const user = result.user;
-  //       console.log(user);
-  //       //sweetalert
-  //       Swal.fire({
-  //         title: "User Login Successful.",
-  //         showClass: {
-  //           popup: "animate_animated animate_fadeInDown",
-  //         },
-  //         hideClass: {
-  //           popup: "animate_animated animate_fadeOutUp",
-  //         },
-  //       });
-  //       navigate(from, { replace: true });
-  //     });
-  //   };
 
-  //   const handleValidateCaptcha = (e) => {
-  //     const user_captcha_value = e.target.value;
-  //     //console.log(value);
-  //     if (validateCaptcha(user_captcha_value)) {
-  //       setDisabled(false);
-  //     } else {
-  //       setDisabled(true);
-  //     }
-  //   };
+      event.preventDefault();
+      const form = event.target;
+      const email = form.email.value;
+      const password = form.password.value;
+
+      
+      console.log(email, password);
+
+      // signIn(email, password).then((result) => {
+      //   const user = result.user;
+      //   console.log(user);
+      //   //sweetalert
+      //   Swal.fire({
+      //     title: "User Login Successful.",
+      //     showClass: {
+      //       popup: "animate_animated animate_fadeInDown",
+      //     },
+      //     hideClass: {
+      //       popup: "animate_animated animate_fadeOutUp",
+      //     },
+      //   });
+      //   navigate(from, { replace: true });
+      // });
+    };
+
+    const handleValidateCaptcha = (e) => {
+      const user_captcha_value = e.target.value;
+      console.log(user_captcha_value);
+      if (validateCaptcha(user_captcha_value)) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
+    };
 
   return (
     <section>
@@ -75,7 +79,7 @@ const Login = () => {
           <div className="md:w-1/2">
             <h2 className="font-bold text-4xl text-black text-center mb-12">Login</h2>
             <div className="card rounded-sm shadow-2xl bg-slate-100 py-4">
-              <form onSubmit="" className="card-body">
+              <form onSubmit={handleLogin} className="card-body">
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text font-semibold text-xl text-[#444]">Email</span>
@@ -102,7 +106,7 @@ const Login = () => {
                 </div>
 
                 {/* chaptcha */}
-                {/* <div className="form-control">
+                <div className="form-control">
                 <label className="label">
                   <LoadCanvasTemplate />
                 </label>
@@ -110,15 +114,15 @@ const Login = () => {
                   onBlur={handleValidateCaptcha}
                   type="text"
                   name="captcha"
-                  placeholder="type the captcha above"
-                  className="input input-bordered"
+                  placeholder="Type The Captcha You See Above"
+                  className="input rounded"
                   required
                 />
-              </div> */}
+              </div>
 
                 <div className="form-control mt-6">
                   <input
-                    //   disabled={disabled}
+                      disabled={disabled}
                     className="btn btn-outline rounded font-bold text-xl text-white bg-[#d9b783] border-0 "
                     type="submit"
                     value="Login"
