@@ -1,25 +1,24 @@
 import { Link } from "react-router-dom";
 import image from "../../assets/others/authentication2.png";
-// import { useContext } from "react";
+import { useContext } from "react";
 import { useEffect, useState } from "react";
-// import { Helmet } from "react-helmet-async";
 // import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-// import { AuthContext } from "../../providers/AuthProvider";
-// import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 // import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 import { Helmet } from "react-helmet";
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
-  //   const { signIn } = useContext(AuthContext);
-  //   const navigate = useNavigate();
-  //   const location = useLocation();
+    const { signInUser } = useContext(AuthContext);
+    // const navigate = useNavigate();
+    // const location = useLocation();
 
   //   const from = location.state?.from?.pathname || "/";
   //   console.log("state in the location login page", location.state);
@@ -39,21 +38,21 @@ const Login = () => {
       
       console.log(email, password);
 
-      // signIn(email, password).then((result) => {
-      //   const user = result.user;
-      //   console.log(user);
-      //   //sweetalert
-      //   Swal.fire({
-      //     title: "User Login Successful.",
-      //     showClass: {
-      //       popup: "animate_animated animate_fadeInDown",
-      //     },
-      //     hideClass: {
-      //       popup: "animate_animated animate_fadeOutUp",
-      //     },
-      //   });
-      //   navigate(from, { replace: true });
-      // });
+      signInUser(email, password).then((result) => {
+        const user = result.user;
+        console.log(user);
+        //sweetalert
+        Swal.fire({
+          title: "User Successfully Logged In !",
+          showClass: {
+            popup: "animate_animated animate_fadeInDown",
+          },
+          hideClass: {
+            popup: "animate_animated animate_fadeOutUp",
+          },
+        });
+        // navigate(from, { replace: true });
+      });
     };
 
     const handleValidateCaptcha = (e) => {
