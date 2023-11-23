@@ -1,7 +1,14 @@
 import MenuButton from "../../pages/shared/MenuButton/MenuButton";
+import useAuth from "../../hooks/useAuth"
 
 const FoodCard = ({ item }) => {
   const { name, recipe, image, price } = item || {};
+
+  const { user } = useAuth()
+
+  const handleAddToCart = ( food ) => {
+    console.log(food , user.email)
+  }
 
   return (
     <div className="bg-[#F3F3F3] shadow-xl w-[360px] mx-auto">
@@ -13,7 +20,7 @@ const FoodCard = ({ item }) => {
         <h2 className="font-semibold text-2xl text-black">{name}</h2>
         <p className="text-[#737373] mt-2">{recipe}</p>
       </div>
-      <div className="mt-6 mb-8 text-center">
+      <div className="mt-6 mb-8 text-center" onClick={() => handleAddToCart(item)}>
         <MenuButton buttonTitle={"Add To Cart"}></MenuButton>
       </div>
     </div>
