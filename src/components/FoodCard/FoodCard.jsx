@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const FoodCard = ({ item }) => {
-  const { name, recipe, image, price } = item || {};
+  const { name, recipe, image, price, _id } = item || {};
 
   const { user } = useAuth();
 
@@ -16,6 +16,16 @@ const FoodCard = ({ item }) => {
 
     if( user && user.email ){
       // sending cart item to database 
+
+      // console.log( user.email , food ) 
+
+      const cartItem = {
+        menuId : _id, 
+        email : user.email,
+        name, 
+        image, 
+        price
+      }
     }
     else{
       Swal.fire({
