@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import MenuButton from "../../pages/shared/MenuButton/MenuButton";
 import useAuth from "../../hooks/useAuth"
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const FoodCard = ({ item }) => {
   const { name, recipe, image, price, _id } = item || {};
@@ -26,6 +28,21 @@ const FoodCard = ({ item }) => {
         image, 
         price
       }
+
+      axios.post('http://localhost:5000/carts' , cartItem)
+        .then(res => {
+          console.log(res.data)
+
+          if(res.data.insertedId){
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `${name} Has Been Added To Your Cart !`,
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
     }
     else{
       Swal.fire({
