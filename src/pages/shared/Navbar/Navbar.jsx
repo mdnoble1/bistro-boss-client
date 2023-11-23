@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { CgProfile } from "react-icons/cg";
 import { FaCartPlus } from "react-icons/fa6";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [ cart ] = useCart();
 
   const handleLogOut = () => {
     logOut()
@@ -74,7 +76,7 @@ const Navbar = () => {
         <NavLink to="/">
           <button className="btn btn-ghost">
             <FaCartPlus className="text-3xl lg:text-4xl text-white"></FaCartPlus>
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">+{cart.length}</div>
           </button>
         </NavLink>
       </li>
