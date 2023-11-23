@@ -73,7 +73,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/">
+        <NavLink to="/dashboard/cart">
           <button className="btn btn-ghost">
             <FaCartPlus className="text-3xl lg:text-4xl text-white"></FaCartPlus>
             <div className="badge badge-secondary">+{cart.length}</div>
