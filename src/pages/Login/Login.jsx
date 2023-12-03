@@ -12,57 +12,58 @@ import Swal from "sweetalert2";
 // import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 import { Helmet } from "react-helmet";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
-    const [disabled, setDisabled] = useState(true);
-    const { signInUser } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
+  const [disabled, setDisabled] = useState(true);
+  const { signInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const from = location.state?.form?.pathname || "/";
-    console.log("state in the location login page", location.state?.form?.pathname);
+  const from = location.state?.form?.pathname || "/";
+  console.log(
+    "state in the location login page",
+    location.state?.form?.pathname
+  );
 
-    useEffect(() => {
-      loadCaptchaEnginge(6);
-    }, []);
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
 
-    const handleLogin = (event) => {
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
+    console.log(email, password);
 
-      event.preventDefault();
-      const form = event.target;
-      const email = form.email.value;
-      const password = form.password.value;
-
-      
-      console.log(email, password);
-
-      signInUser(email, password).then((result) => {
-        const user = result.user;
-        console.log(user);
-        //sweetalert
-        Swal.fire({
-          title: "User Successfully Logged In !",
-          showClass: {
-            popup: "animate_animated animate_fadeInDown",
-          },
-          hideClass: {
-            popup: "animate_animated animate_fadeOutUp",
-          },
-        });
-        navigate(from, { replace: true });
+    signInUser(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      //sweetalert
+      Swal.fire({
+        title: "User Successfully Logged In !",
+        showClass: {
+          popup: "animate_animated animate_fadeInDown",
+        },
+        hideClass: {
+          popup: "animate_animated animate_fadeOutUp",
+        },
       });
-    };
+      navigate(from, { replace: true });
+    });
+  };
 
-    const handleValidateCaptcha = (e) => {
-      const user_captcha_value = e.target.value;
-      console.log(user_captcha_value);
-      if (validateCaptcha(user_captcha_value)) {
-        setDisabled(false);
-      } else {
-        setDisabled(true);
-      }
-    };
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
+    console.log(user_captcha_value);
+    if (validateCaptcha(user_captcha_value)) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  };
 
   return (
     <section>
@@ -72,15 +73,21 @@ const Login = () => {
       <div className="hero min-h-screen py-16">
         <div className="hero-content flex-col md:flex-row items-center justify-between gap-12 lg:gap-32">
           <div className="text-center md:w-1/2">
-            <Link to="/"><img src={image} alt="" /></Link>
+            <Link to="/">
+              <img src={image} alt="" />
+            </Link>
           </div>
           <div className="md:w-1/2">
-            <h2 className="font-bold text-4xl text-black text-center mb-12">Login</h2>
+            <h2 className="font-bold text-4xl text-black text-center mb-12">
+              Login
+            </h2>
             <div className="card rounded-sm shadow-2xl bg-slate-100 py-4">
               <form onSubmit={handleLogin} className="card-body">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-semibold text-xl text-[#444]">Email</span>
+                    <span className="label-text font-semibold text-xl text-[#444]">
+                      Email
+                    </span>
                   </label>
                   <input
                     type="email"
@@ -92,7 +99,9 @@ const Login = () => {
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-semibold text-xl text-[#444]">Password</span>
+                    <span className="label-text font-semibold text-xl text-[#444]">
+                      Password
+                    </span>
                   </label>
                   <input
                     type="password"
@@ -105,22 +114,22 @@ const Login = () => {
 
                 {/* chaptcha */}
                 <div className="form-control">
-                <label className="label">
-                  <LoadCanvasTemplate />
-                </label>
-                <input
-                  onBlur={handleValidateCaptcha}
-                  type="text"
-                  name="captcha"
-                  placeholder="Type The Captcha You See Above"
-                  className="input rounded"
-                  required
-                />
-              </div>
+                  <label className="label">
+                    <LoadCanvasTemplate />
+                  </label>
+                  <input
+                    onBlur={handleValidateCaptcha}
+                    type="text"
+                    name="captcha"
+                    placeholder="Type The Captcha You See Above"
+                    className="input rounded"
+                    required
+                  />
+                </div>
 
                 <div className="form-control mt-6">
                   <input
-                      disabled={disabled}
+                    disabled={disabled}
                     className="btn btn-outline rounded font-bold text-xl text-white bg-[#d9b783] border-0 "
                     type="submit"
                     value="Login"
@@ -130,7 +139,9 @@ const Login = () => {
               <p className="font-bold text-xl text-[#D1A054] text-center mb-6">
                 New Here? <Link to="/register">Register Now !</Link>{" "}
               </p>
-              {/* <SocialLogin></SocialLogin> */}
+              <div className="text-center">
+                <SocialLogin></SocialLogin>
+              </div>
             </div>
           </div>
         </div>
