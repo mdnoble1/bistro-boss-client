@@ -5,8 +5,13 @@ import { FaHome } from "react-icons/fa";
 import { MdOutlinePayments } from "react-icons/md";
 import { FaCalendarCheck } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
+import useCart from "../../../../hooks/useCart";
 
 const SideBar = () => {
+
+
+  const [cart] = useCart();
+
   return (
     <div className="w-[160px] lg:w-96 bg-[#d1a054] flex justify-center min-h-screen">
       <ul className="mt-6 lg:mt-12">
@@ -66,7 +71,7 @@ const SideBar = () => {
                 : `text-black flex items-center gap-3 font-bold cinzel text-xs lg:text-xl uppercase`
             }
           >
-            <FaShoppingCart className="lg:text-2xl"></FaShoppingCart> My Cart
+            <FaShoppingCart className="lg:text-2xl"></FaShoppingCart> My Cart ({cart.length})
           </NavLink>
         </li>
         <li className="mb-6">
