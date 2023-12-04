@@ -21,10 +21,10 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.form?.pathname || "/";
-  console.log(
-    "state in the location login page",
-    location.state?.form?.pathname
-  );
+  // console.log(
+  //   "state in the location login page",
+  //   location.state?.form?.pathname
+  // );
 
   useEffect(() => {
     loadCaptchaEnginge(6);

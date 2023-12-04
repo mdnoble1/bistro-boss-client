@@ -66,15 +66,17 @@ const Cart = () => {
           {/* head */}
           <thead className="bg-[#d1a054] font-semibold text-white text-center lg:text-lg">
             <tr>
+              <th></th>
               <th>Item Image</th>
               <th>Item Name</th>
               <th>Price</th>
               <th>Action</th>
             </tr>
           </thead>
-          {cart?.map((item) => (
+          {cart?.map((item, index) => (
             <tbody key={item._id} className="text-center">
               <tr>
+              <td className="font-bold">{index + 1}</td>
                 <td>
                   <img
                     className="w-20 rounded-lg mx-auto"

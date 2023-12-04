@@ -21,6 +21,8 @@ const SocialLogin = () => {
       axiosPublic
         .post("/users", userInfo)
         .then((res) => {
+
+          console.log(res.data)
           if (res.data.insertedId) {
             // console.log('user added to the database')
             // reset();
