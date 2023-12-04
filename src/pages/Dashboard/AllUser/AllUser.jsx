@@ -16,37 +16,61 @@ const AllUser = () => {
     },
   });
 
+  //   make admin button
 
-  const handleDeleteUser = user => {
-
-
+  const handleMakeAdmin = (user) => {
     Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, Delete It!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axiosSecure.delete(`/users/${user._id}`).then((res) => {
-            // console.log(res.data);
-            if (res.data.deletedCount > 0) {
-  
-              refetch()
-  
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success",
-              });
-            }
-          });
-        }
-      });
+      title: "Are you sure?",
+      text: `You want to make ${user.name} an Admin?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make Admin!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+          // console.log(res.data);
+          if (res.data.modifiedCount > 0) {
+            refetch();
 
-  }
+            Swal.fire({
+              title: "Successful!",
+              text: `${user.name} is now an Admin!`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  const handleDeleteUser = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete It!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user._id}`).then((res) => {
+          // console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            refetch();
+
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <section className="mt-16">
@@ -75,17 +99,23 @@ const AllUser = () => {
             <tbody key={user._id} className="text-center">
               <tr>
                 <td className="font-bold">{index + 1}</td>
-                
+
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td><button
-                    
-                    className="btn bg-[#d1a054] text-2xl text-white"
-                  >
-                    <FaUsers></FaUsers>
-                  </button></td>
                 <td>
-                <button
+                  {user.role === "admin" ? (
+                    <p className="font-bold text-lg">Admin</p>
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className="btn bg-[#d1a054] text-2xl text-white"
+                    >
+                      <FaUsers></FaUsers>
+                    </button>
+                  )}
+                </td>
+                <td>
+                  <button
                     onClick={() => handleDeleteUser(user)}
                     className="btn bg-red-600 text-2xl text-white"
                   >
