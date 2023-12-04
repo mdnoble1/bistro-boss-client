@@ -3,17 +3,50 @@ import SectionTitle from "../../../components/sectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUser = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
+
+
+  const handleDeleteUser = user => {
+
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Delete It!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosSecure.delete(`/users/${user._id}`).then((res) => {
+            // console.log(res.data);
+            if (res.data.deletedCount > 0) {
+  
+              refetch()
+  
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+        }
+      });
+
+  }
 
   return (
     <section className="mt-16">
@@ -45,10 +78,15 @@ const AllUser = () => {
                 
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td><button className="btn bg-[#d1a054]">
-                <FaUsers className="text-2xl text-white"></FaUsers></button></td>
+                <td><button
+                    
+                    className="btn bg-[#d1a054] text-2xl text-white"
+                  >
+                    <FaUsers></FaUsers>
+                  </button></td>
                 <td>
-                  <button
+                <button
+                    onClick={() => handleDeleteUser(user)}
                     className="btn bg-red-600 text-2xl text-white"
                   >
                     <RiDeleteBin2Line></RiDeleteBin2Line>
