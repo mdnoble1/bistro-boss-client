@@ -6,11 +6,12 @@ import { MdOutlinePayments } from "react-icons/md";
 import { FaCalendarCheck } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import useCart from "../../../../hooks/useCart";
+import useAdmin from "../../../../hooks/useAdmin";
 
 const SideBar = () => {
   const [cart] = useCart();
 
-  const isAdmin = true;
+  const [ isAdmin ] = useAdmin();
 
   return (
     <div className="w-[160px] lg:w-96 bg-[#d1a054] flex justify-center min-h-screen">

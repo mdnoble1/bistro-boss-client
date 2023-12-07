@@ -51,7 +51,10 @@ const Login = () => {
           popup: "animate_animated animate_fadeOutUp",
         },
       });
+
+      // navigate('/')
       navigate(from, { replace: true });
+
     });
   };
 

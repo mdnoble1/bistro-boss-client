@@ -10,11 +10,12 @@ import {
 } from "react-icons/fa";
 import { MdOutlinePayments, MdReviews } from "react-icons/md";
 import useCart from "../../../../hooks/useCart";
+import useAdmin from "../../../../hooks/useAdmin";
 
 const Topbar = () => {
   const [cart] = useCart();
 
-  const isAdmin = true;
+  const [ isAdmin ] = useAdmin();
 
   return (
     <div className="navbar bg-[#d1a054] p-4">
